@@ -66,15 +66,16 @@ bool checkCollition(struct objeto *o, struct objeto *b){
 }
 
 
-void createBala(struct objeto *balas[], ALLEGRO_DISPLAY *display, struct objeto *nave){
-    for (int i=0; i<10; i++) {
-        if(balas[i]!=0){
-            balas[i] = (struct objeto *) malloc(sizeof(struct objeto *));
+void createBala(struct objeto *balas[], ALLEGRO_DISPLAY *display, struct objeto *nave, int size){
+    for (int i=0; i<size; i++) {
+        if(balas[i]==0){
+            balas[i] = (struct objeto *) malloc(sizeof(struct objeto));
             setStruct(balas[i], 0, 0, 50, 10, 0, -5);
             setStructColor(display, balas[i], 2);
             (*balas[i]).x = nave->x + nave->w/2;
             (*balas[i]).y = nave->y;
-            i = 10;
+            i = size;
+           // printf("%p",balas[i]);
         }
     }
 }
@@ -83,23 +84,29 @@ bool drawBala(struct objeto *balas[], int size, struct objeto *enemigo){
     bool choco;
     for (int i=0; i<size; i++) {
         if(balas[i]!=0){
-            balas[i]->y += balas[i]->dy;
             choco = checkCollition(enemigo, balas[i]);
             if(!choco){
                 al_draw_bitmap(balas[i]->self, balas[i]->x, balas[i]->y, 0);
+                balas[i]->y += balas[i]->dy;
                 
+            } else
+                enemigo->x = -512;
+        }
+    }
+    al_draw_bitmap(enemigo->self, enemigo->x, enemigo->y, 0);
+    return false;
+}
+
+void deleteBala(struct objeto *balas[], int size){
+    for (int i=0; i<size; i++) {
+        if(balas[i]!=0){
+            if((*balas[i]).y < 0){
+                free(balas[i]);
+                balas[i]=0;
             }
         }
     }
-    
-    al_draw_bitmap(enemigo->self, enemigo->x, enemigo->y, 0);
-    enemigo->x = -500;
-    enemigo->dx = 0;
-    
-    
-    return choco;
 }
-
 
 
 

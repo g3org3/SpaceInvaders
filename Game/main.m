@@ -31,9 +31,10 @@ int main(){
     // end
     
     // create bala
-    struct objeto bala;
-    setStruct(&bala, 0, 0, 70, 10, 0, -5);
-    setStructColor(display, &bala, 2);
+    struct objeto *balas[3];
+    for (int i=0; i<3; i++) {
+        balas[i] = 0000000;
+    }
     // end
     
     // create enemy
@@ -66,20 +67,14 @@ int main(){
                 nave.x -= nave.dx;
             
             if(al_key_down(&keystate, ALLEGRO_KEY_SPACE)){
-                //createBala(balas, display, &nave);
+                createBala(balas, display, &nave, 2);
                 drawbala = true;
-                bala.x = nave.x + nave.w/2;
-                bala.y = SCREEN_H;
-                al_draw_bitmap(bala.self, bala.x, bala.y, 0);
-                bala.y += bala.dy;
             }
             
-            //drawBala(balas, 10, &enemigo);
-            if(drawbala){
-                al_draw_bitmap(bala.self, bala.x, bala.y, 0);
-                bala.y += bala.dy;
-            }
-            al_draw_bitmap(enemigo.self, enemigo.x, enemigo.y, 0);
+            drawBala(balas, 3, &enemigo);
+            deleteBala(balas, 3);
+            printf("%p, %p, %p\n", balas[0], balas[1], balas[2]);
+            //al_draw_bitmap(enemigo.self, enemigo.x, enemigo.y, 0);
             al_draw_bitmap(nave.self, nave.x, nave.y, 0);
             al_flip_display();
             al_clear_to_color(al_map_rgb(0, 0, 0));
