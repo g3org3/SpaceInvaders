@@ -12,8 +12,8 @@ int main(){
     ALLEGRO_EVENT_QUEUE *event_queue;
     ALLEGRO_KEYBOARD_STATE keystate;
     
-    bool done, drawbala, choco;
-    
+    bool done, drawbala, creating;
+    int x = 4;
     drawbala = false;
     
     al_init();
@@ -31,8 +31,8 @@ int main(){
     // end
     
     // create bala
-    struct objeto *balas[3];
-    for (int i=0; i<3; i++) {
+    struct objeto *balas[4];
+    for (int i=0; i<4; i++) {
         balas[i] = 0000000;
     }
     // end
@@ -67,13 +67,18 @@ int main(){
                 nave.x -= nave.dx;
             
             if(al_key_down(&keystate, ALLEGRO_KEY_SPACE)){
-                createBala(balas, display, &nave, 2);
-                drawbala = true;
+                if(x==4){
+                    printf("space%f\n", enemigo.x);
+                    createBala(balas, display, &nave, 4);
+                    x=0;
+                }
+                if(x<4)
+                    x++;
             }
             
-            drawBala(balas, 3, &enemigo);
-            deleteBala(balas, 3);
-            printf("%p, %p, %p\n", balas[0], balas[1], balas[2]);
+            drawBala(balas, 4, &enemigo);
+            deleteBala(balas, 4);
+            //printf("%p, %p, %p, %p\n", balas[0], balas[1], balas[2], balas[3]);
             //al_draw_bitmap(enemigo.self, enemigo.x, enemigo.y, 0);
             al_draw_bitmap(nave.self, nave.x, nave.y, 0);
             al_flip_display();

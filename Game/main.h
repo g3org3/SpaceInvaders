@@ -58,39 +58,44 @@ bool checkCollition(struct objeto *o, struct objeto *b){
     bool rango2 = b->x <= o->x + o->w;
     bool rangoX = rango1 && rango2;
     
-    bool rangoA = b->y >= o->y;
-    bool rangoB = b->y <= o->y + o->h;
-    bool rangoY = rangoA && rangoB;
+    //bool rangoA = b->y >= o->y;
+    //bool rangoB = b->y <= o->y + o->h;
+    //bool rangoY = rangoA && rangoB;
+    
+    bool rangoY = o->y+o->h == b->y;
     
     return rangoX && rangoY;
 }
 
 
 void createBala(struct objeto *balas[], ALLEGRO_DISPLAY *display, struct objeto *nave, int size){
-    for (int i=0; i<size; i++) {
+    for (int i=1; i<size; i++) {
         if(balas[i]==0){
             balas[i] = (struct objeto *) malloc(sizeof(struct objeto));
             setStruct(balas[i], 0, 0, 50, 10, 0, -5);
             setStructColor(display, balas[i], 2);
             (*balas[i]).x = nave->x + nave->w/2;
             (*balas[i]).y = nave->y;
-            i = size;
-           // printf("%p",balas[i]);
+            printf("%d\n", i);
+            i = size*size;
+            
         }
     }
 }
 
 bool drawBala(struct objeto *balas[], int size, struct objeto *enemigo){
     bool choco;
-    for (int i=0; i<size; i++) {
+    for (int i=1; i<size; i++) {
         if(balas[i]!=0){
             choco = checkCollition(enemigo, balas[i]);
             if(!choco){
                 al_draw_bitmap(balas[i]->self, balas[i]->x, balas[i]->y, 0);
                 balas[i]->y += balas[i]->dy;
                 
-            } else
+            } else{
                 enemigo->x = -512;
+                balas[i]->y = -512;
+            }
         }
     }
     al_draw_bitmap(enemigo->self, enemigo->x, enemigo->y, 0);
@@ -98,9 +103,9 @@ bool drawBala(struct objeto *balas[], int size, struct objeto *enemigo){
 }
 
 void deleteBala(struct objeto *balas[], int size){
-    for (int i=0; i<size; i++) {
+    for (int i=1; i<size; i++) {
         if(balas[i]!=0){
-            if((*balas[i]).y < 0){
+            if((*balas[i]).y < 0-balas[i]->h){
                 free(balas[i]);
                 balas[i]=0;
             }
