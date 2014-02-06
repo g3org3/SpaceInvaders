@@ -7,7 +7,7 @@
 #define SCREEN_H 480
 #define FPS 30.00
 
-#define B_SIZE 1
+#define B_SIZE 10
 #define E_SIZE 4
 
 int main(){
