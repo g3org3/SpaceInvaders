@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <allegro5/allegro.h>
+#include "space2.h"
 
 #define SCREEN_W 720
 #define SCREEN_H 480

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E35041518A152D9007FD4E0 /* mainSpace2.c in Sources */ = {isa = PBXBuildFile; fileRef = 5E35041418A152D9007FD4E0 /* mainSpace2.c */; };
+		5E35041518A152D9007FD4E0 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 5E35041418A152D9007FD4E0 /* main.c */; };
 		5E35042E18A1535D007FD4E0 /* Allegro-5.0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E35042418A1535D007FD4E0 /* Allegro-5.0.framework */; };
 		5E35042F18A1535D007FD4E0 /* AllegroAcodec-5.0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E35042518A1535D007FD4E0 /* AllegroAcodec-5.0.framework */; };
 		5E35043018A1535D007FD4E0 /* AllegroAudio-5.0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E35042618A1535D007FD4E0 /* AllegroAudio-5.0.framework */; };
@@ -58,7 +58,7 @@
 /* Begin PBXFileReference section */
 		5E35040618A152D9007FD4E0 /* Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E35041018A152D9007FD4E0 /* Game-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Game-Info.plist"; sourceTree = "<group>"; };
-		5E35041418A152D9007FD4E0 /* mainSpace2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = mainSpace2.c; sourceTree = "<group>"; };
+		5E35041418A152D9007FD4E0 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		5E35042418A1535D007FD4E0 /* Allegro-5.0.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Allegro-5.0.framework"; path = "/Library/Frameworks/Allegro-5.0.framework"; sourceTree = "<absolute>"; };
 		5E35042518A1535D007FD4E0 /* AllegroAcodec-5.0.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "AllegroAcodec-5.0.framework"; path = "/Library/Frameworks/AllegroAcodec-5.0.framework"; sourceTree = "<absolute>"; };
 		5E35042618A1535D007FD4E0 /* AllegroAudio-5.0.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "AllegroAudio-5.0.framework"; path = "/Library/Frameworks/AllegroAudio-5.0.framework"; sourceTree = "<absolute>"; };
@@ -69,10 +69,11 @@
 		5E35042B18A1535D007FD4E0 /* AllegroMain-5.0.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "AllegroMain-5.0.framework"; path = "/Library/Frameworks/AllegroMain-5.0.framework"; sourceTree = "<absolute>"; };
 		5E35042C18A1535D007FD4E0 /* AllegroMemfile-5.0.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "AllegroMemfile-5.0.framework"; path = "/Library/Frameworks/AllegroMemfile-5.0.framework"; sourceTree = "<absolute>"; };
 		5E35042D18A1535D007FD4E0 /* AllegroPrimitives-5.0.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "AllegroPrimitives-5.0.framework"; path = "/Library/Frameworks/AllegroPrimitives-5.0.framework"; sourceTree = "<absolute>"; };
-		5E35044218A1541B007FD4E0 /* space2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = space2.h; sourceTree = "<group>"; };
+		5E35044218A1541B007FD4E0 /* space2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = space2.c; sourceTree = "<group>"; };
 		5E35044518A343E6007FD4E0 /* Deep_Space.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Deep_Space.png; sourceTree = "<group>"; };
 		5E35044718A34FDC007FD4E0 /* ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ship.png; sourceTree = "<group>"; };
 		5E35044918A35592007FD4E0 /* enemigo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemigo.png; sourceTree = "<group>"; };
+		5E449E8618A3FEC20096C006 /* space2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = space2.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,8 +146,9 @@
 				5E35044918A35592007FD4E0 /* enemigo.png */,
 				5E35044718A34FDC007FD4E0 /* ship.png */,
 				5E35044518A343E6007FD4E0 /* Deep_Space.png */,
-				5E35041418A152D9007FD4E0 /* mainSpace2.c */,
-				5E35044218A1541B007FD4E0 /* space2.h */,
+				5E35041418A152D9007FD4E0 /* main.c */,
+				5E35044218A1541B007FD4E0 /* space2.c */,
+				5E449E8618A3FEC20096C006 /* space2.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -215,7 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E35041518A152D9007FD4E0 /* mainSpace2.c in Sources */,
+				5E35041518A152D9007FD4E0 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
