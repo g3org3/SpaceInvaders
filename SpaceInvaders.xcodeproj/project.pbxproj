@@ -28,6 +28,9 @@
 		5E35043F18A1536E007FD4E0 /* AllegroMain-5.0.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5E35042B18A1535D007FD4E0 /* AllegroMain-5.0.framework */; };
 		5E35044018A1536E007FD4E0 /* AllegroMemfile-5.0.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5E35042C18A1535D007FD4E0 /* AllegroMemfile-5.0.framework */; };
 		5E35044118A1536E007FD4E0 /* AllegroPrimitives-5.0.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5E35042D18A1535D007FD4E0 /* AllegroPrimitives-5.0.framework */; };
+		5E35044618A343E6007FD4E0 /* Deep_Space.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E35044518A343E6007FD4E0 /* Deep_Space.png */; };
+		5E35044818A34FDC007FD4E0 /* ship.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E35044718A34FDC007FD4E0 /* ship.png */; };
+		5E35044A18A35592007FD4E0 /* enemigo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E35044918A35592007FD4E0 /* enemigo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -67,6 +70,9 @@
 		5E35042C18A1535D007FD4E0 /* AllegroMemfile-5.0.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "AllegroMemfile-5.0.framework"; path = "/Library/Frameworks/AllegroMemfile-5.0.framework"; sourceTree = "<absolute>"; };
 		5E35042D18A1535D007FD4E0 /* AllegroPrimitives-5.0.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "AllegroPrimitives-5.0.framework"; path = "/Library/Frameworks/AllegroPrimitives-5.0.framework"; sourceTree = "<absolute>"; };
 		5E35044218A1541B007FD4E0 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		5E35044518A343E6007FD4E0 /* Deep_Space.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Deep_Space.png; sourceTree = "<group>"; };
+		5E35044718A34FDC007FD4E0 /* ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ship.png; sourceTree = "<group>"; };
+		5E35044918A35592007FD4E0 /* enemigo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemigo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +142,9 @@
 			isa = PBXGroup;
 			children = (
 				5E35041018A152D9007FD4E0 /* Game-Info.plist */,
+				5E35044918A35592007FD4E0 /* enemigo.png */,
+				5E35044718A34FDC007FD4E0 /* ship.png */,
+				5E35044518A343E6007FD4E0 /* Deep_Space.png */,
 				5E35041418A152D9007FD4E0 /* main.m */,
 				5E35044218A1541B007FD4E0 /* main.h */,
 			);
@@ -193,6 +202,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E35044618A343E6007FD4E0 /* Deep_Space.png in Resources */,
+				5E35044818A34FDC007FD4E0 /* ship.png in Resources */,
+				5E35044A18A35592007FD4E0 /* enemigo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
