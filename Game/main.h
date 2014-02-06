@@ -4,6 +4,7 @@
 #define RED al_map_rgb(220, 88, 88)
 #define GREEN al_map_rgb(70, 180, 95)
 #define WHITE al_map_rgb(255, 255, 255)
+#define BALA_SPEED -10
 
 struct objeto {
     float x;
@@ -87,7 +88,7 @@ void createBala(struct objeto *balas[], ALLEGRO_DISPLAY *display, struct objeto 
     for (int i=0; i<size; i++) {
         if(balas[i]==0){
             balas[i] = (struct objeto *) malloc(sizeof(struct objeto));
-            setStruct(balas[i], 0, 0, 10, 10, 0, -6);
+            setStruct(balas[i], 0, 0, 10, 10, 0, BALA_SPEED);
             setStructColor(display, balas[i], 2);
             (*balas[i]).x = nave->x + nave->w/2;
             (*balas[i]).y = nave->y;
@@ -153,10 +154,17 @@ void deleteBala(struct objeto *balas[], int size){
 }
 
 void createEnemies(struct objeto *o[], int size, ALLEGRO_DISPLAY *display){
+    int p;
     for (int i=0; i<size; i++) {
+        p = i;
         o[i] = (struct objeto *) malloc(sizeof(struct objeto));
-        setStruct(o[i], 100+(200*i), 30+(80*i), 70, 100, 5+(i*2), 0);
-        setStructColor(display, o[i], 3);
+        if(p>=4){
+            setStruct(o[i], 100+(200*p), 30+(80*p), 70, 100, 5+(p*2), 0);
+            setStructColor(display, o[i], 3);
+        } else {
+            setStruct(o[i], 50*p, (80*p), 70, 100, 5+(p*2), 0);
+            setStructColor(display, o[i], 3);
+        }
     }
 
 }

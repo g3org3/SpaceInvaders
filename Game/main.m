@@ -7,8 +7,8 @@
 #define SCREEN_H 480
 #define FPS 30.00
 
-#define B_SIZE 3
-#define E_SIZE 3
+#define B_SIZE 2
+#define E_SIZE 6
 
 int main(){
     ALLEGRO_DISPLAY *display;
