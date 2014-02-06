@@ -4,7 +4,7 @@
 #define RED al_map_rgb(220, 88, 88)
 #define GREEN al_map_rgb(70, 180, 95)
 #define WHITE al_map_rgb(255, 255, 255)
-#define BALA_SPEED -10
+#define BALA_SPEED -4
 
 struct objeto {
     float x;
@@ -158,7 +158,7 @@ void createEnemies(struct objeto *o[], int size, ALLEGRO_DISPLAY *display){
     for (int i=0; i<size; i++) {
         p = i;
         o[i] = (struct objeto *) malloc(sizeof(struct objeto));
-        if(p>=4){
+        if(p<4){
             setStruct(o[i], 100+(200*p), 30+(80*p), 70, 100, 5+(p*2), 0);
             setStructColor(display, o[i], 3);
         } else {
