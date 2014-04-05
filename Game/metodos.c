@@ -1,20 +1,7 @@
-
-
-#define BLUE al_map_rgb(90, 150, 220)
-#define RED al_map_rgb(220, 88, 88)
-#define GREEN al_map_rgb(70, 180, 95)
-#define WHITE al_map_rgb(255, 255, 255)
-#define BALA_SPEED -4
-
-struct objeto {
-    float x;
-    float y;
-    float h;
-    float w;
-    float dx;
-    float dy;
-    ALLEGRO_BITMAP *self;
-};
+#include <stdio.h>
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_image.h>
+#include "metodos.h"
 
 void setStruct(struct objeto *o, float posx, float posy, float height, float width, float dxx, float dyy){
     o-> x = posx;
@@ -78,8 +65,6 @@ bool checkCollition(struct objeto *o, struct objeto *b){
     bool rangoB = b->y <= o->y + o->h;
     bool rangoY = rangoA && rangoB;
     
-    //bool rangoY = o->y+o->h == b->y;
-    
     return rangoX && rangoY;
 }
 
@@ -88,36 +73,13 @@ void createBala(struct objeto *balas[], ALLEGRO_DISPLAY *display, struct objeto 
     for (int i=0; i<size; i++) {
         if(balas[i]==0){
             balas[i] = (struct objeto *) malloc(sizeof(struct objeto));
-            setStruct(balas[i], 0, 0, 10, 10, 0, BALA_SPEED);
+            setStruct(balas[i], nave->x+nave->w/2, nave->y, 20, 10, 0, BALA_SPEED);
             setStructColor(display, balas[i], 2);
-            (*balas[i]).x = nave->x + nave->w/2;
-            (*balas[i]).y = nave->y;
-            //printf("%d\n", i);
-            i = size*size;
-            
+            return;
         }
     }
 }
 
-bool drawBala(struct objeto *balas[], int size, struct objeto *enemigo){
-    bool choco;
-    for (int i=0; i<size; i++) {
-        if(balas[i]!=0){
-            choco = checkCollition(enemigo, balas[i]);
-            if(!choco){
-                al_draw_bitmap(balas[i]->self, balas[i]->x, balas[i]->y, 0);
-                balas[i]->y += balas[i]->dy;
-                //printf("choco");
-                
-            } else{
-                enemigo->x = -512;
-                balas[i]->y = -512;
-            }
-        }
-    }
-    al_draw_bitmap(enemigo->self, enemigo->x, enemigo->y, 0);
-    return false;
-}
 bool drawBalas(struct objeto *balas[], int size, struct objeto *enemigos[], int length){
     bool choco;
     for (int i=0; i<size; i++) {
@@ -125,14 +87,21 @@ bool drawBalas(struct objeto *balas[], int size, struct objeto *enemigos[], int 
             for (int j=0; j<length; j++) {
                 choco = checkCollition(enemigos[j], balas[i]);
                 if(!choco){
-                    al_draw_bitmap(balas[i]->self, balas[i]->x, balas[i]->y, 0);
-                    balas[i]->y += balas[i]->dy;
+                    if(balas[i]->y-balas[i]->h<0){
+                        free(balas[i]);
+                        balas[i] = 0;
+                        break;
+                    } else {
+                        al_draw_bitmap(balas[i]->self, balas[i]->x, balas[i]->y, 0);
+                        balas[i]->y += balas[i]->dy;
+                    }
                     
                 } else{
-                    enemigos[j]->y = -512;
-                    balas[i]->x = -512;
+                    enemigos[j]->y = -500;
+                    free(balas[i]);
+                    balas[i]=0;
+                    break;
                 }
-                //printf("%d", choco);
             }
         }
     }
@@ -140,17 +109,6 @@ bool drawBalas(struct objeto *balas[], int size, struct objeto *enemigos[], int 
         al_draw_bitmap(enemigos[i]->self, enemigos[i]->x, enemigos[i]->y, 0);
     }
     return false;
-}
-
-void deleteBala(struct objeto *balas[], int size){
-    for (int i=0; i<size; i++) {
-        if(balas[i]!=0){
-            if((*balas[i]).y < 0-balas[i]->h){
-                free(balas[i]);
-                balas[i]=0;
-            }
-        }
-    }
 }
 
 void createEnemies(struct objeto *o[], int size, ALLEGRO_DISPLAY *display){
@@ -166,7 +124,7 @@ void createEnemies(struct objeto *o[], int size, ALLEGRO_DISPLAY *display){
             setStructColor(display, o[i], 3);
         }
     }
-
+    
 }
 
 void setEnemiesImg(struct objeto *o[], int size, ALLEGRO_BITMAP *b){

@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
-#include "main.h"
+#include "metodos.h"
 
 #define SCREEN_W 720
 #define SCREEN_H 480
 #define FPS 30.00
 
-#define B_SIZE 10
+#define B_SIZE 1
 #define E_SIZE 4
+#define COOL_DOWN 4
 
 int main(){
     ALLEGRO_DISPLAY *display;
@@ -34,7 +35,7 @@ int main(){
     
     // create space
     struct objeto nave;
-    setStruct(&nave, SCREEN_W/2, SCREEN_H-50, 40, 70, 10, 0);
+    setStruct(&nave, SCREEN_W/2, SCREEN_H-40, 40, 70, 10, 0);
     setStructColor(display, &nave, 1);
     setStructImg(&nave, al_load_bitmap("ship.png"));
     // end
@@ -76,21 +77,25 @@ int main(){
                 if(nave.x+nave.w<SCREEN_W)
                     nave.x += nave.dx;
             if(al_key_down(&keystate, ALLEGRO_KEY_LEFT))
-                nave.x -= nave.dx;
+                if(nave.x>=0)
+                    nave.x -= nave.dx;
             
             if(al_key_down(&keystate, ALLEGRO_KEY_SPACE)){
-                if(x==4){
+                if(x>=COOL_DOWN){
                     createBala(balas, display, &nave, B_SIZE);
                     x=0;
                 }
-                if(x<4)
-                    x++;
+                
             }
+            if(al_key_down(&keystate, ALLEGRO_KEY_X))
+                enemigos[0]->x+=5;
+            if(al_key_down(&keystate, ALLEGRO_KEY_Z))
+                enemigos[0]->x-=5;
+                
+            if(x<COOL_DOWN)
+                x++;
             
             drawBalas(balas, B_SIZE, enemigos, E_SIZE);
-            deleteBala(balas, B_SIZE);
-            //printf("%p, %p, %p, %p\n", balas[0], balas[1], balas[2], balas[3]);
-            //al_draw_bitmap(enemigo.self, enemigo.x, enemigo.y, 0);
             al_draw_bitmap(nave.self, nave.x, nave.y, 0);
             al_flip_display();
             al_clear_to_color(al_map_rgb(0, 0, 0));
